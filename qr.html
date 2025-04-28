@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generated QR Codes (A4 Print Ready)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    
+    body {
+      margin: 20px;
+      font-family: 'Inter', sans-serif;
+    }
+    h2{
+        font-family: 'Inter', sans-serif;
+    }
+    #cards {
+      width: 100%;
+      max-width: 210mm; /* A4 width */
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5mm; /* small gap between cards */
+      justify-content: flex-start;
+      
+      
+    }
+    .card {
+      /* border-top: 1px solid #f7f3f3;
+      border-bottom: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+       */
+       border: 2px dotted #ccc;
+      font-size: 10px;
+      padding: 5px;
+      border-radius: 10px;
+      width: calc(25% - 5mm); /* 5 cards in a row */
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .details {
+      margin-bottom: 5px;
+    }
+    .details div {
+      margin: 2px 0;
+    }
+    .qr-section img {
+      width: 100px;
+      height: 100px;
+      margin-top: 5px;
+    }
+    .bold {
+      font-weight: bold;
+    }
+    .message{
+        font-family:'Courier New', Courier, monospace ;
+        color: rgb(218, 89, 89);
+        font-weight: bold;
+    }
+    .line{
+        width: 70%;
+        margin: 2rem auto;
+        
+    }
+    .print-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 16px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-weight: 500;
+  background-color: #3498db;
+  color: white;
+  padding: 12px 24px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.print-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+}
+
+.print-button:active {
+  background-color: #2472a4;
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(52, 152, 219, 0.3);
+}
+
+.print-button::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M19 8h-1V3H6v5H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zM8 5h8v3H8V5zm8 14H8v-4h8v4zm2-4v-2H6v2H4v-4c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v4h-2z'/%3E%3Ccircle cx='18' cy='11.5' r='1'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media print {
+  .print-button {
+    display: none;
+  }
+}
+
+    /* PRINTING SETTINGS */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #cards {
+        margin: 0;
+        padding: 10mm;
+        page-break-inside: avoid;
+      }
+      .card {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center; font-family: Arial, Helvetica, sans-serif; font-weight: lighter;">Generated QR Code Cards</h2>
+
+<hr class="line" style="border: 0; height: 1px; background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.3), rgba(0,0,0,0)); margin: 2rem auto; width: 80%;">
+<div id="cards"></div>
+
+<script>
+const container = document.getElementById('cards');
+
+// Fetch products from localStorage
+const products = JSON.parse(localStorage.getItem('products')) || [];
+
+if (products.length === 0) {
+  container.innerHTML = '<p class ="message">No products found. Please upload a CSV file first.</p>';
+} else {
+  products.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    card.innerHTML = `
+      <div class="details">
+        <div><span class="bold">Order ID:</span> ${product['(Do not touch) Order Id'] || ''}</div>
+        <div><span class="bold">Channel:</span> ${product['Channel'] || ''}</div>
+        <div><span class="bold">Date:</span> ${product['Date'] || ''}</div>
+        <div><span class="bold">Style No:</span> ${product['Style Number'] || ''} ${product['Style 1'] || ''} ${product['Style 2'] || ''} (${product['Size'] || ''})</div>
+        <div><span class="bold">Brand:</span> ${product['Brand'] || ''} ${product['Pattern#'] || ''} ${product['Color'] || ''} ${product['Style Type'] || ''}</div>
+        <div><span class="bold">Accessory:</span> ${product['Accessory 1'] || ''} ${product['Accessory 2'] || ''}</div>
+        <div><span class="bold">Wash Care:</span> ${product['Wash Care'] || ''}</div>
+      </div>
+      <div class="qr-section">
+        <img src="${product['image 100x100 qr image'] || ''}" alt="QR Code">
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+</script>
+<button onclick="window.print()" class="print-button">Print</button>
+
+
+</body>
+</html>
