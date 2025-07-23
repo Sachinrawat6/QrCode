@@ -154,7 +154,7 @@ if (products.length === 0) {
       <div class="details">
         <div><span class="bold">Order ID:</span> ${product['(Do not touch) Order Id'] || ''}</div>
         <div><span class="bold ">Channel:</span><b style="font-size:14px;"> ${product['Channel'] || ''}</b></div>
-        <div><span class="bold">Date:</span> ${product['Date']?.toLocalString() || ''}</div>
+        <div><span class="bold">Date:</span> ${new Date(product['Date'])?.toLocalString() || ''}</div>
       
         <div><span class="bold">Brand:</span> ${product['Brand'] || ''} <span style="font-size:18px;" class="bold"> ${product['Pattern#'] || ''} </span>  ${product['Color'] || ''} ${product['Style Type'] || ''}</div>
         <div><span class="bold">Accessory:</span> ${product['Accessory 1'] || ''} ${product['Accessory 2'] || ''}</div>
