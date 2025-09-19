@@ -148,14 +148,14 @@ if (products.length === 0) {
 
     card.innerHTML = `
       <div class="details">
-        <div><span class="bold">Order ID:</span> ${product['(Do not touch) Order Id'] || ''}</div>
+        <div><span class="bold">Order ID:</span> ${product['(Do not touch) Order Id'] || ''} <span class="bold"> ( ${product['Style 1'] || ''}) </span></div>
         <div><span class="bold ">Channel:</span><b style="font-size:14px;"> ${product['Channel'] || ''}</b></div>
         <div><span class="bold">Date:</span> ${new Date(product['Date'])?.toLocaleString() || ''}</div>
       
-        <div><span class="bold">Brand:</span> ${product['Brand'] || ''} <span style="font-size:18px;" class="bold"> ${product['Pattern#'] || ''} </span>  ${product['Color'] || ''} ${product['Style Type'] || ''}</div>
+        <div><span class="bold">Brand:</span> ${product['Brand'] || ''} <span style="font-size:18px;" class="bold"> ${product['Pattern#'] || ''} </span>  ${product['Color'] || ''} (${product['Style Type']) || ''}</div>
         <div><span class="bold">Accessory:</span> ${product['Accessory 1'] || ''} ${product['Accessory 2'] || ''}</div>
         <div><span class="bold">Wash Care:</span> ${product['Wash Care'] || ''}</div>
-          <div><span class="bold">Style No:</span><b style="font-size:18px;"> ${product['Style Number'] || ''}</b>  ${product['Style 1'] || ''} ${product['Style 2'] || ''} <b style="font-size:14px;">(${product['Size'] || ''})</b></div>
+          <div><span class="bold">Style No:</span><b style="font-size:18px;"> ${product['Style Number'] || ''}</b>  ${product['Style 2'] || ''} <b style="font-size:14px;">(${product['Size'] || ''})</b></div>
       </div>
       <div class="qr-section">
         <img src="${product['image 100x100 qr image'] || ''}" alt="QR Code">
