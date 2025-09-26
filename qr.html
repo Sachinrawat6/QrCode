@@ -3,173 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <title>Generated QR Codes (A4 Print Ready)</title>
-  <link rel="shortcut icon" href="data:image/png;base64,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" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    
     body {
       margin: 20px;
       font-family: 'Inter', sans-serif;
     }
-    h2{
-        font-family: 'Inter', sans-serif;
-    }
+    h2 { font-family: 'Inter', sans-serif; }
     #cards {
       width: 100%;
       max-width: 210mm; /* A4 width */
       margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5mm; /* small gap between cards */
-      justify-content: flex-start;
-      
-      
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5mm;
     }
     .card {
-     
-       border: 2px dotted #ccc;
+      border: 2px dotted #ccc;
       font-size: 10px;
-      padding: 5px;
+      font-weight: bold;
+      padding: 3px;
       border-radius: 10px;
-      width: calc(25% - 5mm); /* 5 cards in a row */
       box-sizing: border-box;
       text-align: center;
+      page-break-inside: avoid;
+      background: #fff;
+      min-height: 180px; /* Fix height so alignment consistent */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .details {
-      margin-bottom: 5px;
-    }
-    .details div {
-      margin: 2px 0;
-    }
+    .details { margin-bottom: 5px; }
+    .details div { margin: 2px 0; }
     .qr-section img {
-      width: 100px;
-      height: 100px;
-      margin-top: 5px;
+      width: 120px;
+      height: 120px;
+      margin: 5px auto 0;
     }
-    .bold {
+    .bold { font-weight: bold; }
+    .message {
+      font-family:'Courier New', Courier, monospace;
+      color: rgb(218, 89, 89);
       font-weight: bold;
-      
     }
-    .message{
-        font-family:'Courier New', Courier, monospace ;
-        color: rgb(218, 89, 89);
-        font-weight: bold;
-    }
-    .line{
-        width: 70%;
-        margin: 2rem auto;
-        
-    }
+    .line { width: 70%; margin: 2rem auto; }
     .print-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  font-size: 16px;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  font-weight: 500;
-  background-color: #3498db;
-  color: white;
-  padding: 12px 24px;
-  cursor: pointer;
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-  transition: all 0.3s ease;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 16px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-weight: 500;
+      background-color: #3498db;
+      color: white;
+      padding: 12px 24px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .print-button:hover { background-color: #2980b9; transform: translateY(-2px); }
+    .print-button:active { background-color: #2472a4; transform: translateY(0); }
 
-.print-button:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
-}
+    /* Loader (progress bar) */
+    #loader {
+      width: 100%;
+      height: 5px;
+      background: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 15px;
+      display: none;
+    }
+    #loader::after {
+      content: "";
+      position: absolute;
+      left: -40%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, #3498db, #85c1e9);
+      animation: loading 1s infinite;
+    }
+    @keyframes loading {
+      0%   { left: -40%; }
+      50%  { left: 100%; }
+      100% { left: 100%; }
+    }
 
-.print-button:active {
-  background-color: #2472a4;
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(52, 152, 219, 0.3);
-}
-
-.print-button::before {
-  content: "";
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M19 8h-1V3H6v5H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zM8 5h8v3H8V5zm8 14H8v-4h8v4zm2-4v-2H6v2H4v-4c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v4h-2z'/%3E%3Ccircle cx='18' cy='11.5' r='1'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-@media print {
-  .print-button {
-    display: none;
-  }
-}
-
-    /* PRINTING SETTINGS */
     @media print {
-      body {
-        margin: 0;
-        padding: 0;
-      }
+      .print-button { display: none; }
+      body { margin: 0; }
       #cards {
-        margin: 0;
-        padding: 10mm;
-        page-break-inside: avoid;
+        grid-template-columns: repeat(3, 1fr); /* 3 cards per row on A4 */
+        gap: 5mm;
       }
       .card {
         page-break-inside: avoid;
+        break-inside: avoid;
       }
     }
   </style>
 </head>
 <body>
 
-<h2 style="text-align:center; font-family: Arial, Helvetica, sans-serif; font-weight: lighter;">Generated QR Code Cards</h2>
-
-<hr class="line" style="border: 0; height: 1px; background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.3), rgba(0,0,0,0)); margin: 2rem auto; width: 80%;">
+<h2 style="text-align:center; font-weight: lighter;">Generated QR Code Cards</h2>
+<div id="loader"></div> <!-- Loader -->
+<hr class="line" style="border: 0; height: 1px; background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.3), rgba(0,0,0,0)); width: 80%;">
 <div id="cards"></div>
 
 <script>
-const container = document.getElementById('cards');
+const fetchFabricDetailsFromApi = async () => {
+  const loader = document.getElementById('loader');
+  const container = document.getElementById('cards');
 
-// Fetch products from localStorage
-const products = JSON.parse(localStorage.getItem('products')) || [];
+  try {
+    loader.style.display = "block"; // show loader
 
-if (products.length === 0) {
-  container.innerHTML = '<p class ="message">No products found. Please upload a CSV file first.</p>';
-} else {
-  products.forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'card';
+    const response = await fetch("https://raw-material-backend.onrender.com/api/v1/style-details");
+    const data = await response.json();
+    let apiData = data.data;
 
-    card.innerHTML = `
-      <div class="details">
-        <div><span class="bold">Order ID:</span> ${product['(Do not touch) Order Id'] || ''} <span class="bold"> ( ${product['Style 1'] || ''}) </span></div>
-        <div><span class="bold ">Channel:</span><b style="font-size:14px;"> ${product['Channel'] || ''}</b></div>
-        <div><span class="bold">Date:</span> ${new Date(product['Date'])?.toLocaleString() || ''}</div>
-      
-        <div><span class="bold">Brand:</span> ${product['Brand'] || ''} <span style="font-size:18px;" class="bold"> ${product['Pattern#'] || ''} </span>  ${product['Color'] || ''} ( ${product['Style Type']  || ''})</div>
-        <div><span class="bold">Accessory:</span> ${product['Accessory 1'] || ''} ${product['Accessory 2'] || ''}</div>
-        <div><span class="bold">Wash Care:</span> ${product['Wash Care'] || ''}</div>
-          <div><span class="bold">Style No:</span><b style="font-size:18px;"> ${product['Style Number'] || ''}</b>  ${product['Style 2'] || ''} <b style="font-size:14px;">(${product['Size'] || ''})</b></div>
-      </div>
-      <div class="qr-section">
-        <img src="${product['image 100x100 qr image'] || ''}" alt="QR Code">
-      </div>
-    `;
+    // Fetch products from localStorage
+    const products = JSON.parse(localStorage.getItem('products')) || [];
 
-    container.appendChild(card);
-  });
-}
+    container.innerHTML = "";
+    if (products.length === 0) {
+      container.innerHTML = '<p class="message">No products found. Please upload a CSV file first.</p>';
+    } else {
+      products.forEach(product => {
+        const styleNumber = Number(product["Style Number"]);
+        const matchingFabricDetails = apiData.find(
+          (fab) => fab.styleNumber === styleNumber
+        );
+
+        const getAverage = (fabricDetails) => {
+          if (!fabricDetails) return "";
+          const size = product["Size"];
+          const avgBySize = {
+            "XXS": fabricDetails.average_xxs_xs,
+            "XS": fabricDetails.average_xxs_xs,
+            "S": fabricDetails.average_s_m,
+            "M": fabricDetails.average_s_m,
+            "L": fabricDetails.average_l_xl,
+            "XL": fabricDetails.average_l_xl,
+            "2XL": fabricDetails.average_2xl_3xl,
+            "XXL": fabricDetails.average_2xl_3xl,
+            "3XL": fabricDetails.average_2xl_3xl,
+            "4XL": fabricDetails.average_4xl_5xl,
+            "5XL": fabricDetails.average_4xl_5xl
+          };
+          return avgBySize[size] || "";
+        };
+
+        let fabricHtml = "";
+        if (matchingFabricDetails?.fabrics?.length > 0) {
+          matchingFabricDetails.fabrics.forEach((fab, index) => {
+            const avgDetail = matchingFabricDetails?.fabricAvgDetails?.[0]?.fabrics?.[index];
+            const avg = getAverage(avgDetail);
+            const fabricName = fab.fabric_name || "";
+
+            if (fabricName || avg) {
+              fabricHtml += `
+                <div>
+                  <span class="bold">Fabric ${index + 1}:</span>
+                  ${fabricName}
+                  ${avg ? `<span class="bold" style="font-size:15px"> (${avg}) mtr</span>` : ""}
+                  ${fab?.width ? ` (${fab.width})` : ""}
+                </div>
+              `;
+            }
+          });
+        }
+
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        card.innerHTML = `
+          <div class="details">
+            <div>
+              <span class="bold">Order ID:</span> ${product['(Do not touch) Order Id'] || ''}
+              <span class="bold"> Channel: ${product['Channel'] || ''}</span>
+            </div>
+            <div><span class="bold">Date:</span> ${product['Date'] ? new Date(product['Date']).toLocaleString() : ''}</div>
+            <div>
+              <span class="bold">Brand:</span> ${product['Brand'] || ''}
+              <span style="font-size:18px;" class="bold">${product['Pattern#'] || ''}</span>
+              ${product['Color'] || ''} (${product['Style Type'] || ''})
+            </div>
+            ${fabricHtml}
+            <div><span class="bold">Accessory 1:</span> ${product['Accessory 1'] || ''} ${product['Accessory 2'] || ''}</div>
+            <div><span class="bold">Wash Care:</span> ${product['Wash Care'] || ''}</div>
+            <div>
+              <span class="bold">Style No:</span>
+              <b style="font-size:18px;">${product['Style Number'] || ''}</b>
+              ${product['Style 2'] || ''} <b style="font-size:14px;">(${product['Size'] || ''}) ${product["Style 1"] ? `(${product["Style 1"]})` : ""} </b>
+            </div>
+          </div>
+          <div class="qr-section">
+            <img src="${product['image 100x100 qr image'] || ''}" alt="QR Code">
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+  } catch (error) {
+    console.log("fetchFabricDetailsFromApi error :: ", error);
+    container.innerHTML = '<p class="message">Failed to load data from API.</p>';
+  } finally {
+    loader.style.display = "none"; // hide loader
+  }
+};
+
+fetchFabricDetailsFromApi();
 </script>
+
 <button onclick="window.print()" class="print-button">Print</button>
-
-
 </body>
 </html>
-
-
