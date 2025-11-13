@@ -197,7 +197,8 @@ const fetchFabricDetailsFromApi = async () => {
             </div>
             ${fabricHtml}
             <div><span class="bold">Accessory 1:</span> ${product['Accessory 1'] || ''} ${product['Accessory 2'] || ''}</div>
-            <div><span class="bold">Wash Care:</span> ${product['Wash Care'] || ''}</div>
+            
+            <div><span class="bold ">Wash Care:</span> <span style="font-size:20px"> (${product['Wash Care']?.[0] || ''}) </span> </div>
             <div>
               <span class="bold">Style No:</span>
               <b style="font-size:18px;">${product['Style Number'] || ''}</b>
