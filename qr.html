@@ -206,7 +206,7 @@ const fetchFabricDetailsFromApi = async () => {
             </div>
           </div>
           <div class="qr-section">
-            <img src="${product['image 100x100 qr image'] || ''}" alt="QR Code">
+              <img src="https://qrcode.tec-it.com/API/QRCode?data=${product["(Do not touch) Order Id"] || ""}" alt="QR Code">
           </div>
         `;
 
@@ -227,3 +227,5 @@ fetchFabricDetailsFromApi();
 <button onclick="window.print()" class="print-button">Print</button>
 </body>
 </html>
+
+<!-- <img src="${product['image 100x100 qr image'] || ''}" alt="QR Code"> -->
