@@ -1,189 +1,230 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Generated QR Codes (A4 Print Ready)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 20px;
-      font-family: 'Inter', sans-serif;
-    }
-    h2 { font-family: 'Inter', sans-serif; }
-    #cards {
-      width: 100%;
-      max-width: 210mm; /* A4 width */
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5mm;
-    }
-    .card {
-      border: 2px dotted #ccc;
-      font-size: 10px;
-      font-weight: bold;
-      padding: 3px;
-      border-radius: 10px;
-      box-sizing: border-box;
-      text-align: center;
-      page-break-inside: avoid;
-      background: #fff;
-      min-height: 180px; /* Fix height so alignment consistent */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .details { margin-bottom: 5px; }
-    .details div { margin: 2px 0; }
-    .qr-section img {
-      width: 120px;
-      height: 120px;
-      margin: 5px auto 0;
-    }
-    .bold { font-weight: bold; }
-    .message {
-      font-family:'Courier New', Courier, monospace;
-      color: rgb(218, 89, 89);
-      font-weight: bold;
-    }
-    .line { width: 70%; margin: 2rem auto; }
-    .print-button {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      font-size: 16px;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      font-weight: 500;
-      background-color: #3498db;
-      color: white;
-      padding: 12px 24px;
-      cursor: pointer;
-      border: none;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-      transition: all 0.3s ease;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .print-button:hover { background-color: #2980b9; transform: translateY(-2px); }
-    .print-button:active { background-color: #2472a4; transform: translateY(0); }
-
-    /* Loader (progress bar) */
-    #loader {
-      width: 100%;
-      height: 5px;
-      background: #f0f0f0;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 15px;
-      display: none;
-    }
-    #loader::after {
-      content: "";
-      position: absolute;
-      left: -40%;
-      width: 40%;
-      height: 100%;
-      background: linear-gradient(90deg, #3498db, #85c1e9);
-      animation: loading 1s infinite;
-    }
-    @keyframes loading {
-      0%   { left: -40%; }
-      50%  { left: 100%; }
-      100% { left: 100%; }
-    }
-
-    @media print {
-      .print-button { display: none; }
-      body { margin: 0; }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Generated QR Codes (A4 Print Ready)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 20px;
+        font-family: 'Inter', sans-serif;
+      }
+      h2 {
+        font-family: 'Inter', sans-serif;
+      }
       #cards {
-        grid-template-columns: repeat(3, 1fr); /* 3 cards per row on A4 */
+        width: 100%;
+        max-width: 210mm; /* A4 width */
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 5mm;
       }
       .card {
+        border: 2px dotted #ccc;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 3px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        text-align: center;
         page-break-inside: avoid;
-        break-inside: avoid;
+        background: #fff;
+        min-height: 180px; /* Fix height so alignment consistent */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
-    }
-  </style>
-</head>
-<body>
+      .details {
+        margin-bottom: 5px;
+      }
+      .details div {
+        margin: 2px 0;
+      }
+      .qr-section img {
+        width: 120px;
+        height: 120px;
+        margin: 5px auto 0;
+      }
+      .bold {
+        font-weight: bold;
+      }
+      .message {
+        font-family: 'Courier New', Courier, monospace;
+        color: rgb(218, 89, 89);
+        font-weight: bold;
+      }
+      .line {
+        width: 70%;
+        margin: 2rem auto;
+      }
+      .print-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 16px;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-weight: 500;
+        background-color: #3498db;
+        color: white;
+        padding: 12px 24px;
+        cursor: pointer;
+        border: none;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .print-button:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+      }
+      .print-button:active {
+        background-color: #2472a4;
+        transform: translateY(0);
+      }
 
-<h2 style="text-align:center; font-weight: lighter;">Generated QR Code Cards</h2>
-<div id="loader"></div> <!-- Loader -->
-<hr class="line" style="border: 0; height: 1px; background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.3), rgba(0,0,0,0)); width: 80%;">
-<div id="cards"></div>
+      /* Loader (progress bar) */
+      #loader {
+        width: 100%;
+        height: 5px;
+        background: #f0f0f0;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 15px;
+        display: none;
+      }
+      #loader::after {
+        content: '';
+        position: absolute;
+        left: -40%;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(90deg, #3498db, #85c1e9);
+        animation: loading 1s infinite;
+      }
+      @keyframes loading {
+        0% {
+          left: -40%;
+        }
+        50% {
+          left: 100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
 
-<script>
-const fetchFabricDetailsFromApi = async () => {
-  const loader = document.getElementById('loader');
-  const container = document.getElementById('cards');
+      @media print {
+        .print-button {
+          display: none;
+        }
+        body {
+          margin: 0;
+        }
+        #cards {
+          grid-template-columns: repeat(3, 1fr); /* 3 cards per row on A4 */
+          gap: 5mm;
+        }
+        .card {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="text-align: center; font-weight: lighter">Generated QR Code Cards</h2>
+    <div id="loader"></div>
+    <!-- Loader -->
+    <hr
+      class="line"
+      style="
+        border: 0;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+        width: 80%;
+      "
+    />
+    <div id="cards"></div>
 
-  try {
-    loader.style.display = "block"; // show loader
+    <script>
+      const fetchFabricDetailsFromApi = async () => {
+        const loader = document.getElementById('loader');
+        const container = document.getElementById('cards');
 
-    const response = await fetch("https://raw-material-backend.onrender.com/api/v1/style-details");
-    const data = await response.json();
-    let apiData = data.data;
+        try {
+          loader.style.display = 'block'; // show loader
 
-    // Fetch products from localStorage
-    const products = JSON.parse(localStorage.getItem('products')) || [];
+          const response = await fetch(
+            'https://raw-material-backend.onrender.com/api/v1/style-details'
+          );
+          const data = await response.json();
+          let apiData = data.data;
 
-    container.innerHTML = "";
-    if (products.length === 0) {
-      container.innerHTML = '<p class="message">No products found. Please upload a CSV file first.</p>';
-    } else {
-      products.forEach(product => {
-        const styleNumber = Number(product["Style Number"]);
-        const matchingFabricDetails = apiData.find(
-          (fab) => fab.styleNumber === styleNumber
-        );
+          // Fetch products from localStorage
+          const products = JSON.parse(localStorage.getItem('products')) || [];
 
-        const getAverage = (fabricDetails) => {
-          if (!fabricDetails) return "";
-          const size = product["Size"];
-          const avgBySize = {
-            "XXS": fabricDetails.average_xxs_xs,
-            "XS": fabricDetails.average_xxs_xs,
-            "S": fabricDetails.average_s_m,
-            "M": fabricDetails.average_s_m,
-            "L": fabricDetails.average_l_xl,
-            "XL": fabricDetails.average_l_xl,
-            "2XL": fabricDetails.average_2xl_3xl,
-            "XXL": fabricDetails.average_2xl_3xl,
-            "3XL": fabricDetails.average_2xl_3xl,
-            "4XL": fabricDetails.average_4xl_5xl,
-            "5XL": fabricDetails.average_4xl_5xl
-          };
-          return avgBySize[size] || "";
-        };
+          container.innerHTML = '';
+          if (products.length === 0) {
+            container.innerHTML =
+              '<p class="message">No products found. Please upload a CSV file first.</p>';
+          } else {
+            products.forEach((product) => {
+              const styleNumber = Number(product['Style Number']);
+              const matchingFabricDetails = apiData.find((fab) => fab.styleNumber === styleNumber);
 
-        let fabricHtml = "";
-        if (matchingFabricDetails?.fabrics?.length > 0) {
-          matchingFabricDetails.fabrics.forEach((fab, index) => {
-            const avgDetail = matchingFabricDetails?.fabricAvgDetails?.[0]?.fabrics?.[index];
-            const avg = getAverage(avgDetail);
-            const fabricName = fab.fabric_name || "";
+              const getAverage = (fabricDetails) => {
+                if (!fabricDetails) return '';
+                const size = product['Size'];
+                const avgBySize = {
+                  XXS: fabricDetails.average_xxs_xs,
+                  XS: fabricDetails.average_xxs_xs,
+                  S: fabricDetails.average_s_m,
+                  M: fabricDetails.average_s_m,
+                  L: fabricDetails.average_l_xl,
+                  XL: fabricDetails.average_l_xl,
+                  '2XL': fabricDetails.average_2xl_3xl,
+                  XXL: fabricDetails.average_2xl_3xl,
+                  '3XL': fabricDetails.average_2xl_3xl,
+                  '4XL': fabricDetails.average_4xl_5xl,
+                  '5XL': fabricDetails.average_4xl_5xl,
+                };
+                return avgBySize[size] || '';
+              };
 
-            if (fabricName || avg) {
-              fabricHtml += `
+              let fabricHtml = '';
+              if (matchingFabricDetails?.fabrics?.length > 0) {
+                matchingFabricDetails.fabrics.forEach((fab, index) => {
+                  const avgDetail = matchingFabricDetails?.fabricAvgDetails?.[0]?.fabrics?.[index];
+                  const avg = getAverage(avgDetail);
+                  const fabricName = fab.fabric_name || '';
+
+                  if (fabricName || avg) {
+                    fabricHtml += `
                 <div>
                   <span class="bold">Fabric ${index + 1}:</span>
-                  ${fabricName}
-                  ${avg ? `<span class="bold" style="font-size:15px"> (${avg}) mtr</span>` : ""}
-                  ${fab?.width ? ` (${fab.width})` : ""}
+                  ${fabricName} <br>
+                  ${avg ? `<span class="bold" style="font-size:15px"> ${index === 0 ? 'Normal :' : ''} (${avg}) </span>` : ''}
+                  ${avg && index === 0 ? `<span class="bold" style="font-size:15px">Wide: (${(avg / 1.4).toFixed(2)}) </span>` : ''}
+                  
+                  
                 </div>
               `;
-            }
-          });
-        }
+                  }
+                });
+              }
 
-        const card = document.createElement('div');
-        card.className = 'card';
+              const card = document.createElement('div');
+              card.className = 'card';
 
-        card.innerHTML = `
+              card.innerHTML = `
           <div class="details">
             <div>
               <span class="bold">Order ID:</span> ${product['(Do not touch) Order Id'] || ''}
@@ -202,7 +243,7 @@ const fetchFabricDetailsFromApi = async () => {
             <div>
               <span class="bold">Style No:</span>
               <b style="font-size:18px;">${product['Style Number'] || ''}</b>
-              ${product['Style 2'] || ''} <b style="font-size:18px;">(${product['Size'] || ''}) ${product["Style 1"] ? `(${product["Style 1"]})` : ""} </b>
+              ${product['Style 2'] || ''} <b style="font-size:18px;">(${product['Size'] || ''}) ${product['Style 1'] ? `(${product['Style 1']})` : ''} </b>
             </div>
           </div>
           <div class="qr-section">
@@ -210,22 +251,23 @@ const fetchFabricDetailsFromApi = async () => {
           </div>
         `;
 
-        container.appendChild(card);
-      });
-    }
-  } catch (error) {
-    console.log("fetchFabricDetailsFromApi error :: ", error);
-    container.innerHTML = '<p class="message">Failed to load data from API.</p>';
-  } finally {
-    loader.style.display = "none"; // hide loader
-  }
-};
+              container.appendChild(card);
+            });
+          }
+        } catch (error) {
+          console.log('fetchFabricDetailsFromApi error :: ', error);
+          container.innerHTML = '<p class="message">Failed to load data from API.</p>';
+        } finally {
+          loader.style.display = 'none'; // hide loader
+        }
+      };
 
-fetchFabricDetailsFromApi();
-</script>
+      fetchFabricDetailsFromApi();
+    </script>
 
-<button onclick="window.print()" class="print-button">Print</button>
-</body>
+    <button onclick="window.print()" class="print-button">Print</button>
+  </body>
 </html>
 
 <!-- <img src="${product['image 100x100 qr image'] || ''}" alt="QR Code"> -->
+<!-- // ${fab?.width ? ` (${fab.width})` : ''} -->
