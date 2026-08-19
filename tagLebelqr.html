@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>QR Codes (2x4 inch labels)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: 'Inter', sans-serif;
+        background: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h2 {
+        font-weight: 300;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      #loader {
+        width: 100%;
+        max-width: 400px;
+        height: 4px;
+        background: #e0e0e0;
+        border-radius: 2px;
+        overflow: hidden;
+        display: none;
+        margin-bottom: 20px;
+      }
+      #loader::after {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 40%;
+        background: linear-gradient(90deg, #3498db, #85c1e9);
+        border-radius: 2px;
+        animation: loading 1s infinite ease-in-out;
+      }
+      @keyframes loading {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(350%);
+        }
+      }
+
+      #cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      /* 2x4 inch label card */
+      .card {
+        width: 4in; /* 4 inches wide */
+        height: 2in; /* 2 inches tall */
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        page-break-after: always; /* Each card on new page when printing */
+        break-after: page;
+        flex-shrink: 0;
+        font-size: 8px;
+        line-height: 1.3;
+      }
+
+      .card .details {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+
+      .card .details .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px 6px;
+        align-items: baseline;
+      }
+
+      .card .details .bold {
+        font-weight: 600;
+        font-size: 8px;
+      }
+
+      .card .details .label {
+        font-weight: 600;
+        font-size: 7px;
+        color: #555;
+      }
+
+      .card .details .big {
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .card .details .medium {
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      .card .qr-section {
+        flex-shrink: 0;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fafafa;
+        border-radius: 4px;
+        border: 1px solid #eee;
+      }
+
+      .card .qr-section img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .message {
+        color: #c0392b;
+        font-weight: 600;
+        text-align: center;
+        padding: 30px;
+        background: #fff;
+        border-radius: 8px;
+        border: 1px solid #f0d0d0;
+        width: 100%;
+      }
+
+      .print-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 16px;
+        font-weight: 500;
+        background: #3498db;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+        transition: all 0.2s;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .print-button:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+      }
+      .print-button:active {
+        transform: translateY(0);
+      }
+
+      .info-note {
+        margin-top: 20px;
+        font-size: 13px;
+        color: #666;
+        text-align: center;
+        background: #f0f7ff;
+        padding: 8px 18px;
+        border-radius: 20px;
+        border: 1px solid #d0e4f5;
+      }
+
+      @media print {
+        body {
+          background: white;
+          padding: 0;
+          margin: 0;
+        }
+        #loader,
+        .print-button,
+        h2,
+        .info-note {
+          display: none !important;
+        }
+        #cards {
+          max-width: 100%;
+          gap: 0;
+          padding: 0;
+          margin: 0;
+        }
+        .card {
+          width: 4in;
+          height: 2in;
+          border: 1px solid #aaa;
+          border-radius: 2px;
+          box-shadow: none;
+          page-break-after: always;
+          break-after: page;
+          margin: 0 auto;
+          padding: 5px 7px;
+        }
+        .card .qr-section img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+
+      /* Small screens */
+      @media screen and (max-width: 500px) {
+        .card {
+          width: 100%;
+          height: auto;
+          min-height: 2in;
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 10px;
+        }
+        .card .qr-section {
+          width: 80px;
+          height: 80px;
+        }
+        .card .qr-section img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>2 x 4 inch Labels</h2>
+    <div id="loader"></div>
+    <div id="cards"></div>
+    <div class="info-note">Each label is 4" wide × 2" tall — prints one per page</div>
+
+    <button onclick="window.print()" class="print-button">🖨️ Print Labels</button>
+
+    <script>
+      const fetchFabricDetailsFromApi = async () => {
+        const loader = document.getElementById('loader');
+        const container = document.getElementById('cards');
+
+        try {
+          loader.style.display = 'block';
+
+          const response = await fetch(
+            'https://raw-material-backend.onrender.com/api/v1/style-details'
+          );
+          const data = await response.json();
+          const apiData = data.data || [];
+
+          const products = JSON.parse(localStorage.getItem('products')) || [];
+
+          container.innerHTML = '';
+
+          if (products.length === 0) {
+            container.innerHTML =
+              '<p class="message">No products found. Please upload a CSV file first.</p>';
+            return;
+          }
+
+          products.forEach((product) => {
+            const styleNumber = Number(product['Style Number']);
+            const matchingFabricDetails = apiData.find((fab) => fab.styleNumber === styleNumber);
+
+            const getAverage = (fabricDetails) => {
+              if (!fabricDetails) return '';
+              const size = product['Size'];
+              const avgBySize = {
+                XXS: fabricDetails.average_xxs_xs,
+                XS: fabricDetails.average_xxs_xs,
+                S: fabricDetails.average_s_m,
+                M: fabricDetails.average_s_m,
+                L: fabricDetails.average_l_xl,
+                XL: fabricDetails.average_l_xl,
+                '2XL': fabricDetails.average_2xl_3xl,
+                XXL: fabricDetails.average_2xl_3xl,
+                '3XL': fabricDetails.average_2xl_3xl,
+                '4XL': fabricDetails.average_4xl_5xl,
+                '5XL': fabricDetails.average_4xl_5xl,
+              };
+              return avgBySize[size] || '';
+            };
+
+            let fabricHtml = '';
+            if (matchingFabricDetails?.fabrics?.length > 0) {
+              matchingFabricDetails.fabrics.forEach((fab, index) => {
+                const avgDetail = matchingFabricDetails?.fabricAvgDetails?.[0]?.fabrics?.[index];
+                const avg = getAverage(avgDetail);
+                const fabricName = fab.fabric_name || '';
+
+                if (fabricName || avg) {
+                  fabricHtml += `
+                    <div class="row">
+                      <span class="bold big">F${index + 1}:</span>
+                      ${fabricName}
+                      ${avg ? `<span class="bold big">N:(${avg})</span>` : ''}
+                      ${avg && index === 0 ? `<span class="bold big">W:(${(avg / 1.4).toFixed(2)})</span>` : ''}
+                    </div>
+                  `;
+                }
+              });
+            }
+
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            card.innerHTML = `
+              <div class="details">
+                <div class="row">
+                  <span class="bold" style="font-size:16px">(${product['(Do not touch) Order Id'] || ''}) </span>
+                  <span class="label" style="font-size:14px" >${product['Channel'] || ''}</span>
+                  <span class="label" style="font-size:12px" >${product['Date'] ? new Date(product['Date']).toLocaleString() : ''}</span>
+                </div>
+
+                <div class="row" style="font-size:16px">
+                  <span class="bold big">${product['Brand'] || ''}</span>
+                  <span class="big">${product['Pattern#'] || ''}</span>
+                  <span>${product['Color'] || ''}</span>
+                  <span class="label big">(${product['Style Type'] || ''})</span>
+                </div>
+                 <div style="font-size:13px"> ${fabricHtml} </div>
+                <div class="row big">
+                  <span class="big">Acc1:</span> ${product['Accessory 1'] || ''}
+                  ${product['Accessory 2'] ? `Acc2: ${product['Accessory 2']}` : ''}
+                </div>
+                <div class="row">
+                  <span class="label big">Wash:</span>
+                  <span class="big">(${product['Wash Care']?.[0] || ''}W)</span>
+                </div>
+                <div class="row">
+                  <span class="big">Style:</span>
+                  <span class="big">${product['Style Number'] || ''}</span>
+                  ${product['Style 2'] ? product['Style 2'] : ''}
+                  <span class="big">(${product['Size'] || ''})</span>
+                  ${product['Style 1'] ? `(${product['Style 1']})` : ''}
+                </div>
+              </div>
+              <div class="qr-section">
+                <img src="${product['image 100x100 qr image'] || ''}" alt="QR" />
+              </div>
+            `;
+
+            container.appendChild(card);
+          });
+        } catch (error) {
+          console.error('fetchFabricDetailsFromApi error ::', error);
+          container.innerHTML = '<p class="message">Failed to load data from API.</p>';
+        } finally {
+          loader.style.display = 'none';
+        }
+      };
+
+      fetchFabricDetailsFromApi();
+    </script>
+  </body>
+</html>
